@@ -1,0 +1,3 @@
+[submodule "hello-ocaml"]
+	path = hello-ocaml
+	url = https://github.com/esy-ocaml/hello-ocaml.git
