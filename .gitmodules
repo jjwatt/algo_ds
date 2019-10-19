@@ -9,4 +9,4 @@
 	url = https://github.com/nryoung/algorithms.git
 [submodule "python/interactive-coding-challenges"]
 	path = python/interactive-coding-challenges
-	url = https://github.com/donnemartin/interactive-coding-challenges.git
+	url = https://github.com/jjwatt/interactive-coding-challenges.git
