@@ -1,3 +1,12 @@
 [submodule "hello-ocaml"]
 	path = hello-ocaml
 	url = https://github.com/esy-ocaml/hello-ocaml.git
+[submodule "python/nryoung-algorithms"]
+	path = python/nryoung-algorithms
+	url = https://github.com/nryoung/algorithms.git
+[submodule "python/keon-algorithms"]
+	path = python/keon-algorithms
+	url = https://github.com/nryoung/algorithms.git
+[submodule "python/interactive-coding-challenges"]
+	path = python/interactive-coding-challenges
+	url = https://github.com/donnemartin/interactive-coding-challenges.git
