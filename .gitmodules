@@ -10,3 +10,6 @@
 [submodule "python/interactive-coding-challenges"]
 	path = python/interactive-coding-challenges
 	url = https://github.com/jjwatt/interactive-coding-challenges.git
+[submodule "coding-interview-university"]
+	path = coding-interview-university
+	url = git@github.com:jjwatt/coding-interview-university.git
