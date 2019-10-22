@@ -13,3 +13,6 @@
 [submodule "coding-interview-university"]
 	path = coding-interview-university
 	url = git@github.com:jjwatt/coding-interview-university.git
+[submodule "python/TheAlgorithms"]
+	path = python/TheAlgorithms
+	url = https://github.com/TheAlgorithms/Python.git
