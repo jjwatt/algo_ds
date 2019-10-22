@@ -61,6 +61,7 @@ def insertion_sort(L):
     """A normal insertion sort.
     Mutates the argument. No return.
     """
+    #TODO(jjwatt): Better naming. Algorithm examples are bad code :P
     for i in range(1, len(L)):
         j = i - 1
         key = L[i]
@@ -70,8 +71,12 @@ def insertion_sort(L):
         L[j+1] = key
 
 
-# Merge sort, how I would do it in scheme.
 def mymerge(left, right):
+    """Recursive merge, the way I would do it in scheme.
+
+    Look how clean this reads. Right?
+    Pretty slow in Python, though.
+    """
     if not left:
         return right
     if not right:
@@ -90,6 +95,7 @@ def take(l, n):
 
 
 def mymergesort(alist):
+    """Recursive mergesort, the way I'd do it in scheme."""
     if len(alist) < 2:
         return alist
     split = len(alist) // 2
@@ -102,3 +108,38 @@ def createlist(n, rng=None):
     if rng is None:
         rng = (1, 255)
     return random.choices(range(*rng), k=n)
+
+
+class bubblesort(object):
+    def swap(val1, val2):
+        val1, val2 = val2, val1
+    def my_in_place(self, arr):
+        """My off-the-cuff in place bubblesort based on English description."""
+        for _, item in enumerate(arr):
+            for idx2 in range(len(arr) - 1):
+                if arr[idx2] > arr[idx2 + 1]:
+                    arr[idx2], arr[idx2 + 1] = arr[idx2 + 1], arr[idx2]
+    def myr(self, arr, acc):
+        """Partial recursive bubblesort."""
+        if acc == 1:
+            # Base case
+            return
+        i = 0
+        while i < acc - 1:
+            if arr[i] > arr[i+1]:
+                swap(arr[i], arr[i+1])
+            i += 1
+        self.myr(arr, acc - 1)
+    def myfr(self, arr):
+        """Fully recursive bubblesort w/o reference WIP."""
+        def _bsort(ar2):
+            if len(ar2) < 2:
+                return []
+            if ar2[0] > ar2[1]:
+                return [ar2[1]] + _bsort([ar2[0]] + [ar2[2:]])
+            else:
+                return [ar2[0]] + _bsort([ar2[1]] + [ar2[2:]])
+        t = _bsort(arr)
+        return t
+
+
