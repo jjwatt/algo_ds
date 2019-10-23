@@ -61,6 +61,7 @@ def insertion_sort(L):
     """A normal insertion sort.
     Mutates the argument. No return.
     """
+    #TODO(jjwatt): Better naming. Algorithm examples are bad code :P
     for i in range(1, len(L)):
         j = i - 1
         key = L[i]
@@ -70,8 +71,12 @@ def insertion_sort(L):
         L[j+1] = key
 
 
-# Merge sort, how I would do it in scheme.
 def mymerge(left, right):
+    """Recursive merge, the way I would do it in scheme.
+
+    Look how clean this reads. Right?
+    Pretty slow in Python, though.
+    """
     if not left:
         return right
     if not right:
@@ -90,6 +95,7 @@ def take(l, n):
 
 
 def mymergesort(alist):
+    """Recursive mergesort, the way I'd do it in scheme."""
     if len(alist) < 2:
         return alist
     split = len(alist) // 2
@@ -102,3 +108,75 @@ def createlist(n, rng=None):
     if rng is None:
         rng = (1, 255)
     return random.choices(range(*rng), k=n)
+
+
+def swap(val1, val2):
+    val1, val2 = val2, val1
+
+
+class bubblesort(object):
+    def my_in_place(self, arr):
+        """My off-the-cuff in place bubblesort based on English description."""
+        for _, item in enumerate(arr):
+            for idx2 in range(len(arr) - 1):
+                if arr[idx2] > arr[idx2 + 1]:
+                    arr[idx2], arr[idx2 + 1] = arr[idx2 + 1], arr[idx2]
+    def mypr_in_place(self, arr, acc):
+        """Partial recursive in-place bubblesort."""
+        if acc == 1:
+            # Base case
+            return arr
+        i = 0
+        while i < acc - 1:
+            if arr[i] > arr[i+1]:
+                swap(arr[i], arr[i+1])
+            i += 1
+        self.mypr_in_place(arr, acc - 1)
+    def fr_bubble_sort(self, arr):
+        """Fully recursive bubblesort.
+
+        Still messy. This is like bubble_up and
+        schemey_bubble_sort, but all put together
+        to 'hide' the aux functions. Still no loops!
+        Isn't this clearer? Waaay slower, though.
+        12 - 20 times slower than the imperative and
+        in-place ones. Bubblesort is the slowest and
+        dumbest sort anyway, though.
+        """
+        def _bsort(ar2):
+            """All the 'hard work' in this fn."""
+            if ar2[1:] == []:
+                return ar2
+            if ar2[0] > ar2[1]:
+                return [ar2[1]] + _bsort([ar2[0]] + ar2[2:])
+            else:
+                return [ar2[0]] + _bsort(ar2[1:])
+        def _dec(counter, ar1):
+            """Helper fn to track counter and call _bsort."""
+            if counter == 1:
+                return _bsort(ar1)
+            else:
+                return _dec(counter - 1, _bsort(ar1))
+        return _dec(len(arr), arr)
+    def bubble_up(self, arr):
+        """Recursive bubbler.
+
+        Use this with aux methods to bubble up values.
+        """
+        if arr[1:] == []:
+            return arr
+        if arr[0] < arr[1]:
+            return [arr[0]] + self.bubble_up(arr[1:])
+        else:
+            return [arr[1]] + self.bubble_up([arr[0]] + arr[2:])
+    def bubble_sort_aux(self, counter, arr):
+        if counter == 1:
+            return self.bubble_up(arr)
+        else:
+            return self.bubble_sort_aux(counter - 1, self.bubble_up(arr))
+    def schemey_bubble_sort(self, arr):
+        counter = len(arr)
+        return self.bubble_sort_aux(counter, arr)
+
+
+
