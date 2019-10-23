@@ -178,5 +178,20 @@ class bubblesort(object):
         counter = len(arr)
         return self.bubble_sort_aux(counter, arr)
 
+def my_fr_qsort(arr):
+    if len(arr) <= 1:
+        return arr
+    # try:
+    #     print(arr[0])
+    # except IndexError:
+    #     return []
+    pivot = arr[0]
+    return (my_fr_qsort([
+            front for front in arr[1:] if front < pivot
+    ])
+            + [pivot] +
+            my_fr_qsort([
+                back for back in arr[1:] if back >= pivot
+    ]))
 
 
