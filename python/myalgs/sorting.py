@@ -110,9 +110,11 @@ def createlist(n, rng=None):
     return random.choices(range(*rng), k=n)
 
 
+def swap(val1, val2):
+    val1, val2 = val2, val1
+
+
 class bubblesort(object):
-    def swap(val1, val2):
-        val1, val2 = val2, val1
     def my_in_place(self, arr):
         """My off-the-cuff in place bubblesort based on English description."""
         for _, item in enumerate(arr):
@@ -123,7 +125,7 @@ class bubblesort(object):
         """Partial recursive bubblesort."""
         if acc == 1:
             # Base case
-            return
+            return arr
         i = 0
         while i < acc - 1:
             if arr[i] > arr[i+1]:
@@ -133,13 +135,33 @@ class bubblesort(object):
     def myfr(self, arr):
         """Fully recursive bubblesort w/o reference WIP."""
         def _bsort(ar2):
-            if len(ar2) < 2:
-                return []
+            if ar2[1:] == []:
+                return ar2
             if ar2[0] > ar2[1]:
-                return [ar2[1]] + _bsort([ar2[0]] + [ar2[2:]])
+                return [ar2[1]] + _bsort([ar2[0]] + ar2[2:])
             else:
-                return [ar2[0]] + _bsort([ar2[1]] + [ar2[2:]])
-        t = _bsort(arr)
-        return t
+                return [ar2[0]] + _bsort(ar2[1:])
+        def _fix(counter, ar1):
+            if counter == 1:
+                return _bsort(ar1)
+            else:
+                return _fix(counter - 1, _bsort(ar1))
+        return _fix(len(arr), arr)
+    def bubble_up(self, arr):
+        if arr[1:] == []:
+            return arr
+        if arr[0] < arr[1]:
+            return [arr[0]] + self.bubble_up(arr[1:])
+        else:
+            return [arr[1]] + self.bubble_up([arr[0]] + arr[2:])
+    def bubble_sort_aux(self, counter, arr):
+        if counter == 1:
+            return self.bubble_up(arr)
+        else:
+            return self.bubble_sort_aux(counter - 1, self.bubble_up(arr))
+    def fullfun(self, arr):
+        counter = len(arr)
+        return self.bubble_sort_aux(counter, arr)
+
 
 
