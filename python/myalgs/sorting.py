@@ -121,8 +121,8 @@ class bubblesort(object):
             for idx2 in range(len(arr) - 1):
                 if arr[idx2] > arr[idx2 + 1]:
                     arr[idx2], arr[idx2 + 1] = arr[idx2 + 1], arr[idx2]
-    def myr(self, arr, acc):
-        """Partial recursive bubblesort."""
+    def mypr_in_place(self, arr, acc):
+        """Partial recursive in-place bubblesort."""
         if acc == 1:
             # Base case
             return arr
@@ -131,23 +131,38 @@ class bubblesort(object):
             if arr[i] > arr[i+1]:
                 swap(arr[i], arr[i+1])
             i += 1
-        self.myr(arr, acc - 1)
-    def myfr(self, arr):
-        """Fully recursive bubblesort w/o reference WIP."""
+        self.mypr_in_place(arr, acc - 1)
+    def fr_bubble_sort(self, arr):
+        """Fully recursive bubblesort.
+
+        Still messy. This is like bubble_up and
+        schemey_bubble_sort, but all put together
+        to 'hide' the aux functions. Still no loops!
+        Isn't this clearer? Waaay slower, though.
+        12 - 20 times slower than the imperative and
+        in-place ones. Bubblesort is the slowest and
+        dumbest sort anyway, though.
+        """
         def _bsort(ar2):
+            """All the 'hard work' in this fn."""
             if ar2[1:] == []:
                 return ar2
             if ar2[0] > ar2[1]:
                 return [ar2[1]] + _bsort([ar2[0]] + ar2[2:])
             else:
                 return [ar2[0]] + _bsort(ar2[1:])
-        def _fix(counter, ar1):
+        def _dec(counter, ar1):
+            """Helper fn to track counter and call _bsort."""
             if counter == 1:
                 return _bsort(ar1)
             else:
-                return _fix(counter - 1, _bsort(ar1))
-        return _fix(len(arr), arr)
+                return _dec(counter - 1, _bsort(ar1))
+        return _dec(len(arr), arr)
     def bubble_up(self, arr):
+        """Recursive bubbler.
+
+        Use this with aux methods to bubble up values.
+        """
         if arr[1:] == []:
             return arr
         if arr[0] < arr[1]:
@@ -159,7 +174,7 @@ class bubblesort(object):
             return self.bubble_up(arr)
         else:
             return self.bubble_sort_aux(counter - 1, self.bubble_up(arr))
-    def fullfun(self, arr):
+    def schemey_bubble_sort(self, arr):
         counter = len(arr)
         return self.bubble_sort_aux(counter, arr)
 
