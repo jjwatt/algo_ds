@@ -22,3 +22,6 @@
 [submodule "TheAlgorithms/Python"]
 	path = TheAlgorithms/Python
 	url = https://github.com/TheAlgorithms/Python.git
+[submodule "scheme/racket/CodeFromTheReasonedSchemer2ndEd"]
+	path = scheme/racket/CodeFromTheReasonedSchemer2ndEd
+	url = https://github.com/webyrd/CodeFromTheReasonedSchemer2ndEd.git
