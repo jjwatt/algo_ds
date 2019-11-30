@@ -34,3 +34,6 @@
 [submodule "scheme/sicp-solutions/abdulapopoola"]
 	path = scheme/sicp-solutions/abdulapopoola
 	url = https://github.com/abdulapopoola/SICPBook.git
+[submodule "scheme/SICP-guile"]
+	path = scheme/SICP-guile
+	url = https://github.com/zv/SICP-guile.git
