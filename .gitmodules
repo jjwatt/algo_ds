@@ -22,3 +22,15 @@
 [submodule "TheAlgorithms/Python"]
 	path = TheAlgorithms/Python
 	url = https://github.com/TheAlgorithms/Python.git
+[submodule "scheme/sicp-pdf"]
+	path = scheme/sicp-pdf
+	url = https://github.com/sarabander/sicp-pdf.git
+[submodule "scheme/sicp-solutions/qiao"]
+	path = scheme/sicp-solutions/qiao
+	url = https://github.com/qiao/sicp-solutions
+[submodule "scheme/sicp-solutions/ivanjovanovic"]
+	path = scheme/sicp-solutions/ivanjovanovic
+	url = https://github.com/ivanjovanovic/sicp.git
+[submodule "scheme/sicp-solutions/abdulapopoola"]
+	path = scheme/sicp-solutions/abdulapopoola
+	url = https://github.com/abdulapopoola/SICPBook.git
