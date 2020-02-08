@@ -25,6 +25,3 @@
 [submodule "scheme/racket/CodeFromTheReasonedSchemer2ndEd"]
 	path = scheme/racket/CodeFromTheReasonedSchemer2ndEd
 	url = https://github.com/webyrd/CodeFromTheReasonedSchemer2ndEd.git
-[submodule "javascript/AlgoCasts"]
-	path = javascript/AlgoCasts
-	url = https://github.com/StephenGrider/AlgoCasts.git
