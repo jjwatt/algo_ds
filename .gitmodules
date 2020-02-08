@@ -27,4 +27,4 @@
 	url = https://github.com/webyrd/CodeFromTheReasonedSchemer2ndEd.git
 [submodule "javascript/AlgoCasts"]
 	path = javascript/AlgoCasts
-	url = git@github.com:jjwatt/AlgoCasts.git
+	url = https://github.com/jjwatt/AlgoCasts.git
