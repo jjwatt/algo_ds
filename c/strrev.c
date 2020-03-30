@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 {
 	char* s;
 
-	if (argc > 0) {
+	if (argc > 1) {
 		s = argv[1];
 		printf("Reverse of the string \"%s\".\n", s);
 		printf("Reversing...");
