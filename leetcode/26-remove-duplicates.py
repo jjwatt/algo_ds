@@ -1,4 +1,4 @@
-def removeDuplicates(nums):
+def remove_duplicates(nums):
     """Remove duplicates from a sorted array in-place"""
     if not nums:
         return 0
@@ -10,3 +10,17 @@ def removeDuplicates(nums):
             nums[slow] = nums[fast]
             slow += 1
     return slow
+
+
+def remove_duplicates_set(nums):
+    """Remove duplicates from an unsorted array in-place"""
+    seen = set()
+    write_index = 0
+    for read_index in range(len(nums)):
+        if nums[read_index] not in seen:
+            seen.add(nums[read_index])
+            nums[write_index] = nums[read_index]
+            write_index += 1
+    # Truncate list to remove remaining elements
+    # del nums[write_index:]
+    return write_index

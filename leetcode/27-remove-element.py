@@ -7,7 +7,7 @@ def remove_element(nums: list[int], val: int) -> int:
     return k
 
 
-def do_example(nums, val):
+def do_example(nums: list[int], val: int):
     print(f"\tInput: {nums}")
     res = remove_element(nums, val)
     print(f"\tOutput: {res}")
