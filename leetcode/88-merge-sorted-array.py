@@ -17,7 +17,7 @@ def merge(nums1, m,
         end_idx -= 1
 
 
-def merge_gemini(nums1, m, nums2, n):
+def merge_gemini(nums1, m, nums2, n) -> None:
     """Gemini's version of merge arrays.
 
     Mostly the same as above, but maybe a little clearer
@@ -50,3 +50,30 @@ def merge_gemini(nums1, m, nums2, n):
         nums1[write_index] = nums2[p2]
         p2 -= 1
         write_index -= 1
+
+
+if __name__ == "__main__":
+
+    tests = [
+        {
+            'nums1': [1, 2, 3, 0, 0, 0],
+            'm': 3,
+            'nums2': [2, 5, 6],
+            'n': 3
+         },
+        {
+            'nums1': [1], 'm': 1, 'nums2': [], 'n': 0
+        },
+        {
+            'nums1': [0], 'm': 0, 'nums2': [1], 'n': 1
+        },
+    ]
+    for t in tests:
+        nums1 = t['nums1']
+        m = t['m']
+        nums2 = t['nums2']
+        n = t['n']
+        breakpoint()
+        print(f"{nums1=}, {m=}, {nums2=}, {n=}")
+        merge_gemini(nums1, m, nums2, n)
+        print(f"{nums1=}")
