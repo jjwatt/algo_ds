@@ -18,15 +18,15 @@ binsearch() {
     local mid
     echo "needle = $needle"
     echo "haystack = ${haystack[*]}"
-    while [[ $low -le $high ]]; do 
-	mid=$(( (low + high) / 2 ))
-	if [[ ${haystack[$mid]} -eq $needle ]]; then
+    while ((low <= high)); do 
+	mid=$(((low + high) / 2 ))
+	if ((haystack[mid] == needle)); then
 	    echo "$mid"
 	    return 0
 	fi
-	if [[ ${haystack[$mid]} -lt $needle ]]; then
+	if ((haystack[mid] < needle)); then
 	    # Search the right side
-	    low=$(( mid + 1 ))
+	    low=$((mid + 1))
 	else
 	    high=$((mid - 1))
 	fi
