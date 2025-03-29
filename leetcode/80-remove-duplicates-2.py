@@ -13,3 +13,8 @@ def removeDuplicates2(nums):
             slow += 1
     return slow
 
+
+if __name__ == "__main__":
+    nums = [1, 2, 2, 3, 4, 5]
+    breakpoint()
+    n = removeDuplicates2(nums)

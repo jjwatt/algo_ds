@@ -24,3 +24,11 @@ def remove_duplicates_set(nums):
     # Truncate list to remove remaining elements
     # del nums[write_index:]
     return write_index
+
+
+if __name__ == "__main__":
+    nums = [1, 2, 2, 3, 3, 4]
+    breakpoint()
+    n = remove_duplicates(nums)
+    print(f"{nums=}")
+    print(f"{n=}")
