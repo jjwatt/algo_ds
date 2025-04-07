@@ -13,17 +13,21 @@ insertionsort() {
     local ar=("${@}")
     len="${#ar[@]}"
     for ((j=1; j < len; j++)); do
-	key="${ar[j]}"
-	((i=j-1))
+	local key="${ar[j]}"
+	local i=$((j - 1))
 	while ((i >= 0 && ar[i] > key)); do
-	    echo "$i"
-	    ((i=i-1))
+	    # Shift elements right
+	    ar[$((i+1))]="${ar[$i]}"
+	    ((i--))
 	done
+	# Insert key into new position
+	ar[$((i+1))]="$key"
     done
+    printf "%s\n" "${ar[*]}"
 }
 
 main() {
-    mylist=(5 4 3 2 1)
+    local mylist=(5 4 3 2 1)
     insertionsort "${mylist[@]}"
 }
 
