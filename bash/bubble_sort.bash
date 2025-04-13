@@ -5,9 +5,9 @@ swap() {
   local index1="$2"
   local index2="$3"
 
-  local temp="${arr[$index1]}"
-  arr[$index1]="${arr[$index2]}"
-  arr[$index2]="$temp"
+  local temp="${arr[index1]}"
+  arr[index1]="${arr[index2]}"
+  arr[index2]="$temp"
 }
 
 bubblesort() {
@@ -19,8 +19,8 @@ bubblesort() {
   for ((i=0; i < len - 1; i++)); do
     swapped=0
     for ((j=0; j < len - i - 1; j++)); do
-      local current="${arr_ref[$j]}"
-      local next="${arr_ref[$((j + 1))]}"
+      local current="${arr_ref[j]}"
+      local next="${arr_ref[j + 1]}"
       if [[ "$current" > "$next" ]]; then
         swap "arr_ref" "$j" "$((j + 1))"
         swapped=1
