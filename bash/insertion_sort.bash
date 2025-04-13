@@ -17,11 +17,11 @@ insertionsort() {
 	local i=$((j - 1))
 	while ((i >= 0 && ar[i] > key)); do
 	    # Shift elements right
-	    ar[$((i+1))]="${ar[$i]}"
+	    ar[i+1]="${ar[$i]}"
 	    ((i--))
 	done
 	# Insert key into new position
-	ar[$((i+1))]="$key"
+	ar[i+1]="$key"
     done
     printf "%s\n" "${ar[*]}"
 }
