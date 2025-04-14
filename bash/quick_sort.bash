@@ -3,11 +3,9 @@
 quicksort() {
     local arr=("${@}")
     local len="${#arr[@]}"
+    local output=
 
-    if [[ $len -le 1 ]]; then
-	printf "%s " "${arr[@]}"
-	return
-    fi
+    [[ $len -le 1 ]] && echo -n "${arr[@]}" && return
 
     local pivot="${arr[0]}"
     local less=()
@@ -15,19 +13,18 @@ quicksort() {
     local greater=()
 
     for element in "${arr[@]}"; do
-	if [[ $element -lt $pivot ]]; then
-	    less+=("$element")
-	elif [[ $element -eq $pivot ]]; then
-	    equal+=("$element")
-	else
-	    greater+=("$element")
-	fi
+	[[ $element -lt $pivot ]] && less+=("$element")
+	[[ $element -eq $pivot ]] && equal+=("$element")
+	[[ $element -gt $pivot ]] && greater+=("$element")
     done
-
-    # Combine results recursively
-    quicksort "${less[@]}"
-    printf "%s " "${equal[@]}"
-    quicksort "${greater[@]}"
+    local less_sorted
+    local greater_sorted
+    less_sorted=$(quicksort "${less[@]}")
+    greater_sorted=$(quicksort "${greater[@]}")
+    [[ -n $less_sorted ]] && output+="$less_sorted "
+    output+="${equal[*]}"
+    [[ -n $greater_sorted ]] && output+=" $greater_sorted"
+    echo -n "$output"
 }
 
 main() {

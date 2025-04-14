@@ -22,8 +22,8 @@ bubblesort() {
       local current="${arr_ref[j]}"
       local next="${arr_ref[j + 1]}"
       if [[ "$current" > "$next" ]]; then
-        swap "arr_ref" "$j" "$((j + 1))"
-        swapped=1
+	swap "arr_ref" "$j" "$((j + 1))"
+	swapped=1
       fi
     done
     if ((swapped == 0)); then
@@ -37,7 +37,10 @@ bubblesort() {
 
 main() {
     local mylist=(e d c b a)
+    printf "mylist before sort: %s\n" "${mylist[*]}"
     bubblesort "${mylist[@]}"
+    printf "mylist after sort: %s\n" "${mylist[*]}"
+
 }
 
 main "$@"
