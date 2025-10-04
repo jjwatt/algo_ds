@@ -115,22 +115,27 @@ def mymergesort(alist):
 
 
 def createlist(n, rng=None):
+    """Create a list of random numbers between 1 and 255."""
     if rng is None:
         rng = (1, 255)
     return random.choices(range(*rng), k=n)
 
 
 def swap(val1, val2):
+    """Swap two values with eachother."""
     val1, val2 = val2, val1
 
 
 class bubblesort(object):
+    """Bubblesort functions."""
+
     def my_in_place(self, arr):
         """My off-the-cuff in place bubblesort based on English description."""
         for _, item in enumerate(arr):
             for idx2 in range(len(arr) - 1):
                 if arr[idx2] > arr[idx2 + 1]:
                     arr[idx2], arr[idx2 + 1] = arr[idx2 + 1], arr[idx2]
+
     def mypr_in_place(self, arr, acc):
         """Partial recursive in-place bubblesort."""
         if acc == 1:
@@ -142,6 +147,7 @@ class bubblesort(object):
                 swap(arr[i], arr[i+1])
             i += 1
         self.mypr_in_place(arr, acc - 1)
+
     def fr_bubble_sort(self, arr):
         """Fully recursive bubblesort.
 
@@ -161,13 +167,15 @@ class bubblesort(object):
                 return [ar2[1]] + _bsort([ar2[0]] + ar2[2:])
             else:
                 return [ar2[0]] + _bsort(ar2[1:])
+
         def _dec(counter, ar1):
-            """Helper fn to track counter and call _bsort."""
+            """Track counter and call _bsort."""
             if counter == 1:
                 return _bsort(ar1)
             else:
                 return _dec(counter - 1, _bsort(ar1))
         return _dec(len(arr), arr)
+
     def bubble_up(self, arr):
         """Recursive bubbler.
 
@@ -179,25 +187,30 @@ class bubblesort(object):
             return [arr[0]] + self.bubble_up(arr[1:])
         else:
             return [arr[1]] + self.bubble_up([arr[0]] + arr[2:])
+
     def bubble_sort_aux(self, counter, arr):
+        """Recurse to bubble sort."""
         if counter == 1:
             return self.bubble_up(arr)
         else:
             return self.bubble_sort_aux(counter - 1, self.bubble_up(arr))
+
     def schemey_bubble_sort(self, arr):
+        """Do bubble sort in schemey style."""
         counter = len(arr)
         return self.bubble_sort_aux(counter, arr)
 
+
 def my_fr_qsort(arr):
+    """Do fully recursive quicksort."""
     if len(arr) <= 1:
         return arr
     pivot = arr[0]
-    return (my_fr_qsort([
-            front for front in arr[1:] if front < pivot
-    ])
-            + [pivot] +
-            my_fr_qsort([
-                back for back in arr[1:] if back >= pivot
-    ]))
-
-
+    return (
+        my_fr_qsort(
+            [front for front in arr[1:] if front < pivot]
+        ) + [pivot] +
+        my_fr_qsort(
+            [back for back in arr[1:] if back >= pivot]
+        )
+    )
