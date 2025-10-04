@@ -32,7 +32,6 @@ def recbinsearch(haystack, needle):
     return rec(0, len(haystack) - 1)
 
 
-
 if __name__ == "__main__":
     tests = ((range(1, 11), 5),
              (range(1, 10), 8),
@@ -40,9 +39,10 @@ if __name__ == "__main__":
              (range(10, 21), 16),
              (range(-5, 5), 4),
              (range(-10, 0), 5))
-    breakpoint()
+    # breakpoint()
     for t in tests:
-        res = binsearch(*t)
+        # res = binsearch(*t)
+        res = recbinsearch(*t)
         if res:
             print(f"Found {t[1]} at index {res}")
         else:

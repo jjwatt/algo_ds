@@ -1,9 +1,13 @@
+"""Various sorting in Python."""
 import random
 
 
 myrandom10list = random.choices(range(1, 50), k=10)
+
+
 def compsort(junk):
     """From taocp-vol3.1e p76.
+
     Algorithm C: Sorting by Counting.
     ((compare Kj with Ki) for 1 <= j <= i) for 1 < i <= N.
     where K is keys and i and j are indexes.
@@ -39,8 +43,10 @@ def compsort(junk):
         # print("dec i, i = ", i-1)
         i = i - 1
     return count
+
+
 def pycompsort(junk):
-    """A more pythonic version with the same spirit."""
+    """Sort with compsort in a pythonic version with the same spirit."""
     count = [0 for i in junk]
     for i, value in enumerate(junk):
         for j in range(i - 1, -1, -1):
@@ -50,6 +56,7 @@ def pycompsort(junk):
                 count[i] = count[i] + 1
     return count
 
+
 def sortwithtable(junk, count_table):
     """Use the count table to sort the junk list."""
     newjunk = [0 for i in junk]
@@ -57,15 +64,17 @@ def sortwithtable(junk, count_table):
         newjunk[j] = junk[i]
     return newjunk
 
+
 def insertion_sort(L):
-    """A normal insertion sort.
+    """Do a normal insertion sort.
+
     Mutates the argument. No return.
     """
-    #TODO(jjwatt): Better naming. Algorithm examples are bad code :P
+    # TODO(jjwatt): Better naming. Algorithm examples are bad code :P
     for i in range(1, len(L)):
         j = i - 1
         key = L[i]
-        while(L[j] > key) and (j >= 0):
+        while L[j] > key and j >= 0:
             L[j+1] = L[j]
             j = j - 1
         L[j+1] = key
@@ -87,11 +96,12 @@ def mymerge(left, right):
         return [left[0]] + mymerge(left[1:], right)
 
 
-def take(l, n):
+def take(lst, n):
+    """Take n members from list."""
     if not n:
         return list()
     else:
-        return [l[0]] + take(l[1:], n - 1)
+        return [lst[0]] + take(lst[1:], n - 1)
 
 
 def mymergesort(alist):
@@ -99,7 +109,7 @@ def mymergesort(alist):
     if len(alist) < 2:
         return alist
     split = len(alist) // 2
-    left  = alist[:split]
+    left = alist[:split]
     right = alist[split:]
     return mymerge(mymergesort(left), mymergesort(right))
 
