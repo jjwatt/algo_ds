@@ -121,9 +121,20 @@ def createlist(n, rng=None):
     return random.choices(range(*rng), k=n)
 
 
+def bad_swap(val1, val2):
+    """Swap two values with eachother."""
+    # Doesn't work because pass by value.
+    val1, val2 = val2, val1
+
+
 def swap(val1, val2):
     """Swap two values with eachother."""
-    val1, val2 = val2, val1
+    return (val2, val1)
+
+
+def swap_list_elements(lst, index1, index2):
+    """Swap two elements within a list in-place."""
+    lst[index1], lst[index2] = lst[index2], lst[index1]
 
 
 class bubblesort(object):
@@ -131,22 +142,27 @@ class bubblesort(object):
 
     def my_in_place(self, arr):
         """My off-the-cuff in place bubblesort based on English description."""
-        for _, item in enumerate(arr):
-            for idx2 in range(len(arr) - 1):
-                if arr[idx2] > arr[idx2 + 1]:
-                    arr[idx2], arr[idx2 + 1] = arr[idx2 + 1], arr[idx2]
+        for _ in arr:
+            for i in range(len(arr) - 1):
+                if arr[i] > arr[i + 1]:
+                    # Swap.
+                    # arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                    swap_list_elements(arr, i, i+1)
 
-    def mypr_in_place(self, arr, acc):
+    def mypr_in_place(self, arr):
         """Partial recursive in-place bubblesort."""
+        self.mypr_in_place_aux(arr, len(arr))
+
+    def _mypr_in_place_aux(self, arr, acc):
         if acc == 1:
             # Base case
             return arr
         i = 0
         while i < acc - 1:
-            if arr[i] > arr[i+1]:
-                swap(arr[i], arr[i+1])
+            if arr[i] > arr[i + 1]:
+                swap_list_elements(arr, i, i+1)
             i += 1
-        self.mypr_in_place(arr, acc - 1)
+        self._mypr_in_place_aux(arr, acc - 1)
 
     def fr_bubble_sort(self, arr):
         """Fully recursive bubblesort.
