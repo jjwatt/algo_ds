@@ -80,6 +80,22 @@ def insertion_sort(L):
         L[j+1] = key
 
 
+def py_insertion_sort(items):
+    """Do an insertion sort but Pythonic style."""
+    for i in range(1, len(items)):
+        current_value = items[i]
+        position = i - 1
+
+        # Shift elements to the right if they are greater than the element to
+        # be inserted.
+        while position >= 0 and items[position] > current_value:
+            items[position + 1] = items[position]
+            position -= 1
+
+        # Insert the current value into its correct position
+        items[position + 1] = current_value
+
+
 def mymerge(left, right):
     """Recursive merge, the way I would do it in scheme.
 
