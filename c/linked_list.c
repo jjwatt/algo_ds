@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef int item_type;
 
@@ -60,7 +61,47 @@ void list_print(const LinkedList *list) {
     printf("NULL\n");
 }
 
-int main()
-{
+bool list_push_front(LinkedList *list, item_type data) {
+    if (list == NULL)
+	return false;
+    Node* new_node = create_node(data);
+    if (new_node == NULL)
+	return false;
+    if (list->head == NULL) {
+	list->head = new_node;
+	list->tail = new_node;
+    } else {
+	new_node->next = list->head;
+	list->head = new_node;
+    }
+    list->size++;
+    return true;
+}
+
+bool list_append(LinkedList *list, item_type data) {
+    if (list == NULL)
+	return false;
+    Node *new_node = create_node(data);
+    if (new_node == NULL)
+	return false;
+    if (list->head == NULL) {
+	list->head = new_node;
+        list->tail = new_node;
+    } else {
+	list->tail->next = new_node;
+        list->tail = new_node;
+    }
+    list->size++;
+    return true;
+}
+
+int main() {
+    printf("Creating list...\n");
+    LinkedList *mylist = list_create();
+    list_append(mylist, 10);
+    list_append(mylist, 20);
+    list_append(mylist, 30);
+    list_print(mylist);
+    list_free(mylist);
     return 0;
 }
