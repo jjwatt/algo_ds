@@ -95,6 +95,24 @@ bool list_append(LinkedList *list, item_type data) {
     return true;
 }
 
+bool list_pop_front(LinkedList *list, item_type *result) {
+    if (list == NULL || list->head == NULL) {
+	return false;
+    }
+    Node *temp = list->head;
+    *result = temp->data;
+
+    list->head = list->head->next;
+
+    if (list->head == NULL) {
+	list->tail = NULL;
+    }
+
+    free(temp);
+    list->size--;
+    return true;
+}
+
 int main() {
     printf("Creating list...\n");
     LinkedList *mylist = list_create();
@@ -102,6 +120,11 @@ int main() {
     list_append(mylist, 20);
     list_append(mylist, 30);
     list_print(mylist);
+    printf("Popping front...\n");
+    item_type popped_val;
+    if (list_pop_front(mylist, &popped_val)) {
+	printf("Popped: %d\n", popped_val);
+    }      
     list_free(mylist);
     return 0;
 }
