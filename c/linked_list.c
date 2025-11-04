@@ -4,64 +4,63 @@
 typedef int item_type;
 
 typedef struct Node {
-    item_type item;
+    item_type data;
     struct Node *next;
 } Node;
 
-void append(Node *head, item_type val)
-{
-    Node *current = head;
-    while(current->next != NULL) {
-	current = current->next;
+typedef struct LinkedList {
+    Node *head;
+    Node *tail;
+    size_t size;
+} LinkedList;
+
+static Node* create_node(item_type data) {
+    Node *new_node = (Node *)malloc(sizeof(Node));
+    if (new_node == NULL) {
+	return NULL;
     }
-    current->next = (Node*) malloc(sizeof(Node));
-    current->next->item = val;
-    current->next->next = NULL;
+    new_node->data = data;
+    new_node->next = NULL;
+    return new_node;
 }
 
-Node* list(item_type val)
-{
-    Node *head = (Node*) malloc(sizeof(Node));
-    head->item = val;
-    head->next = NULL;
-    return head;
+LinkedList* list_create() {
+    LinkedList *list = (LinkedList *)malloc(sizeof(LinkedList));
+    if (list == NULL) {
+	return NULL;
+    }
+    list->head = NULL;
+    list->tail = NULL;
+    list->size = 0;
+    return list;
 }
 
-void print_list(Node* head)
-{
-    Node* current = head;
-    while(current != NULL) {
-	printf("%d\n", current->item);
-	current = current->next;
+void list_free(LinkedList *list) {
+    if (list == NULL) return;
+    Node* current = list->head;
+    Node *next;
+    while (current != NULL) {
+	next = current->next;
+        free(current);
+	current = next;
     }
+    free(list);
 }
 
-item_type pop_last(Node* head)
-{
-    Node* current = NULL;
-    item_type retval = {0};
-    if (head->next == NULL) {
-	retval = head->item;
-	free(head);
-	return retval;
+void list_print(const LinkedList *list) {
+    if (list == NULL) {
+	printf("List is (null)\n");
     }
-    current = head;
-    while (current->next->next != NULL) {
+    Node *current = list->head;
+    printf("List (size %zu): HEAD -> ", list->size);
+    while (current != NULL) {
+	printf("[%d] -> ", current->data);
 	current = current->next;
     }
-    retval = current->next->item;
-    free(current->next);
-    current->next = NULL;
-    return retval;
+    printf("NULL\n");
 }
 
 int main()
 {
-    Node* llist = list(10);
-    append(llist, 20);
-    append(llist, 30);
-    print_list(llist);
-    printf("%d\n", pop_last(llist));
-    printf("%d\n", pop_last(llist));
-    printf("%d\n", pop_last(llist));
+    return 0;
 }
