@@ -1,4 +1,8 @@
+"""Leetcode 27 Remove element from list."""
+
+
 def remove_element(nums: list[int], val: int) -> int:
+    """Remove value from list."""
     slow = 0
     for fast in range(len(nums)):
         if nums[fast] != val:
@@ -8,6 +12,7 @@ def remove_element(nums: list[int], val: int) -> int:
 
 
 def do_example(nums: list[int], val: int):
+    """Do example."""
     print(f"\tInput: {nums}")
     res = remove_element(nums, val)
     print(f"\tOutput: {res}")
