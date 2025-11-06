@@ -1,17 +1,8 @@
-#!/bin/env bash
-
-printitems() {
-    haystack=("${@}")
-    echo "Elements in haystack: "
-    for item in "${haystack[@]}"; do
-	echo "$item"
-    done
-}
-
+#!/usr/bin/env bash
 
 insertionsort() {
     local ar=("${@}")
-    len="${#ar[@]}"
+    local len="${#ar[@]}"
     for ((j=1; j < len; j++)); do
 	local key="${ar[j]}"
 	local i=$((j - 1))
@@ -20,7 +11,6 @@ insertionsort() {
 	    ar[i+1]="${ar[$i]}"
 	    ((i--))
 	done
-	# Insert key into new position
 	ar[i+1]="$key"
     done
     printf "%s\n" "${ar[*]}"
