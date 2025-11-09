@@ -26,6 +26,14 @@ def remove_duplicates_set(nums):
     return write_index
 
 
+def remove_duplicates_py(nums):
+    unique_list = []
+    for i in nums:
+        if i not in unique_list:
+            unique_list.append(i)
+    return unique_list
+
+
 if __name__ == "__main__":
     nums = [1, 2, 2, 3, 3, 4]
     breakpoint()

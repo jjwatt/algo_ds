@@ -20,6 +20,14 @@ class LinkedList:
             last_node = last_node.next
         last_node.next = new_node
 
+    def push_front(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        new_node.next = self.head
+        self.head = new_node
+
     def display(self):
         current = self.head
         elements = []
@@ -34,4 +42,5 @@ if __name__ == "__main__":
     mylist.append(10)
     mylist.append(20)
     mylist.append(30)
+    mylist.push_front(40)
     mylist.display()
