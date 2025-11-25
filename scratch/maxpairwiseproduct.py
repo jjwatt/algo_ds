@@ -3,6 +3,7 @@ import heapq
 import sys
 import timeit
 
+
 def slow_pairwise(nums):
     product = 0
     for i in range(len(nums)):
@@ -28,12 +29,15 @@ def faster_pairwise_sorted(nums):
     product = largest2[0] * largest2[1]
     return product
 
+
 def heap_pairwise(nums):
     heap = copy.copy(nums)
-    heapq.heapify(heap)
+    while len(heap) > 2:
+        heapq.heappop(heap)
     largest2 = heap[-2:]
     product = largest2[0] * largest2[1]
     return product
+
 
 def main(argv):
     nums = [int(x) for x in argv[1:]]
@@ -41,8 +45,10 @@ def main(argv):
     print(f"faster_pairwise1(nums): {faster_pairwise1(nums)}")
     print(f"heap_pairwise(nums): {heap_pairwise(nums)}")
     print(f"faster_pairwise_sorted(nums): {faster_pairwise_sorted(nums)}")
+
     print("Timings:")
-    print(f"slow_pairwise(nums):\t\t{timeit.timeit(lambda: slow_pairwise(nums))}")
+    print(f"slow_pairwise(nums):\t\t"
+          f"{timeit.timeit(lambda: slow_pairwise(nums))}")
     print(
         f"faster_pairwise1(nums):\t\t"
         f"{timeit.timeit(lambda: faster_pairwise1(nums))}"
@@ -51,7 +57,8 @@ def main(argv):
         f"faster_pairwise_sorted(nums):\t"
         f"{timeit.timeit(lambda: faster_pairwise_sorted(nums))}"
     )
-    print(f"heap_pairwise(nums):\t\t{timeit.timeit(lambda: heap_pairwise(nums))}")
+    print(f"heap_pairwise(nums):\t\t"
+          f"{timeit.timeit(lambda: heap_pairwise(nums))}")
 
 
 if __name__ == "__main__":
