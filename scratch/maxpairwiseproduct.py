@@ -12,6 +12,22 @@ def slow_pairwise(nums):
     return product
 
 
+def recursive_pairwise(nums):
+    def check_pairs(target, others):
+        if not others:
+            return 0
+        product = target * others[0]
+        max_of_rest = check_pairs(target, others[1:])
+        return max(product, max_of_rest)
+    if len(nums) < 2:
+        return 0
+    first = nums[0]
+    rest = nums[1:]
+    current_max = check_pairs(first, rest)
+    remaining_max = recursive_pairwise(rest)
+    return max(current_max, remaining_max)
+
+
 def faster_pairwise1(nums):
     index1 = 0
     for i in range(1, len(nums)):
@@ -45,6 +61,7 @@ def main(argv):
     print(f"faster_pairwise1(nums): {faster_pairwise1(nums)}")
     print(f"heap_pairwise(nums): {heap_pairwise(nums)}")
     print(f"faster_pairwise_sorted(nums): {faster_pairwise_sorted(nums)}")
+    print(f"recursive_pairwise(nums): {recursive_pairwise(nums)}")
 
     print("Timings:")
     print(f"slow_pairwise(nums):\t\t"
@@ -59,6 +76,10 @@ def main(argv):
     )
     print(f"heap_pairwise(nums):\t\t"
           f"{timeit.timeit(lambda: heap_pairwise(nums))}")
+    print(
+        f"recursive_pairwise(nums):\t"
+        f"{timeit.timeit(lambda: recursive_pairwise(nums))}"
+    )
 
 
 if __name__ == "__main__":
