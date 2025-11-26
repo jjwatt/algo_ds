@@ -1,5 +1,6 @@
 import heapq
-from abc.collections import Iterable
+from abc.collections import Iterable, MutableSequence
+from collections import Counter
 
 #TODO: Use Python Typing/type hints
 #TODO: Organize better with stuff in algo_ds/python/myalgs/sorting.py
@@ -80,6 +81,11 @@ def reverse_in_place(col):
         start += 1
         end -= 1
 
+def pythonic_reverse_in_place(col: MutableSequence):
+    for i in range(len(col) // 2):
+        col[i], col[~i] = col[~i], col[i]
+
+
 def dedupe(items, key=None):
     seen = set()
     for item in items:
@@ -99,3 +105,8 @@ def top_k_frequent(items: Iterable, k: int) -> Iterable:
     klargest = heapq.nlargest(k, heap)
     res = [n for (_, n) in klargest]
     return res
+
+def top_k_frequent_counter(items: Iterable, k: int) -> tuple:
+    counts = Counter(items)
+    top_k = counts.most_common(k)
+    return tuple(n for (n, _) in top_k)
