@@ -15,10 +15,7 @@ def has_duplicate_dict(nums: list[int]) -> bool:
     """Detect duplicates using a frequency dict."""
     nums_freq = {}
     for i in nums:
-        if i in nums_freq:
-            nums_freq[i] += 1
-        else:
-            nums_freq[i] = 1
+        nums_freq[i] = 1 + nums_freq.get(i, 0)
     for i in nums_freq.values():
         if i > 1:
             return True
