@@ -83,6 +83,7 @@ def group_anagrams(strs: list[str]) -> list[str]:
         anagrams_list.append(v)
     return anagrams_list
 
+
 def top_k_frequent(nums: list[int], k: int) -> list[int]:
     """Top K frequent with a sort."""
     count = {}
@@ -136,13 +137,15 @@ def top_k_frequent_bucket_sort(
 
 
 def encode(strs: list[str]) -> str:
-    res = ""
+    """Encode a string."""
+    encoded = ""
     for s in strs:
-        res += str(len(s)) + "#" + s
-    return res
+        encoded += str(len(s)) + "#" + s
+    return encoded
 
 
 def decode(s: str) -> list[str]:
+    """Decode an encoded string."""
     result = []
     i = 0
     while i < len(s):
@@ -156,7 +159,12 @@ def decode(s: str) -> list[str]:
         i = j
     return result
 
+
 def is_anagram(s: str, t: str) -> bool:
+    """Return True if the strings are anagrams of eachother.
+
+    Use and compare dicts to see if strings are anagrams.
+    """
     s_dict = {}
     t_dict = {}
     for i in s:
@@ -192,6 +200,6 @@ if __name__ == "__main__":
     print(f"{STR=} is_palindrome: {is_palindrome(STR)}")
 
     lst = [1, 2, 2, 3, 3, 3]
-    k = 2
-    res = top_k_frequent_bucket_sort(lst, k)
+    K = 2
+    res = top_k_frequent_bucket_sort(lst, K)
     print(f"{res=}")
