@@ -35,11 +35,11 @@ def max_subarray_sum(a: list[int]):
     return max_so_far
 
 
-def is_palindrome(string):
+def is_palindrome(mystr):
     start = 0
-    end = len(string) - 1
+    end = len(mystr) - 1
     while start < end:
-        if string[start] == string[end]:
+        if mystr[start] == mystr[end]:
             start += 1
             end -= 1
         else:
@@ -59,7 +59,7 @@ def remove_duplicates_set(nums):
     """Remove duplicates from an unsorted array in-place"""
     seen = set()
     write_index = 0
-    for read_index in range(len(nums)):
+    for read_index, _ in enumerate(nums):
         if nums[read_index] not in seen:
             seen.add(nums[read_index])
             nums[write_index] = nums[read_index]
@@ -139,7 +139,7 @@ def encode(strs: list[str]) -> str:
 
 
 def decode(s: str) -> list[str]:
-    res = []
+    result = []
     i = 0
     while i < len(s):
         j = i
@@ -148,9 +148,9 @@ def decode(s: str) -> list[str]:
         length = int(s[i:j])
         i = j + 1
         j = i + length
-        res.append(s[i:j])
+        result.append(s[i:j])
         i = j
-    return res
+    return result
 
 def is_anagram(s: str, t: str) -> bool:
     s_dict = {}
@@ -184,8 +184,8 @@ if __name__ == "__main__":
     lst = [1, 2, 3, 4]
     print(f"Max sum: {max_subarray_sum(lst)}")
 
-    string = "radar"
-    print(f"{string=} is_palindrome: {is_palindrome(string)}")
+    STR = "radar"
+    print(f"{STR=} is_palindrome: {is_palindrome(STR)}")
 
     lst = [1, 2, 2, 3, 3, 3]
     k = 2
