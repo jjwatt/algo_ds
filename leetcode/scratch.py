@@ -3,6 +3,7 @@ import heapq
 from sys import maxsize
 
 def has_duplicate_set(nums: list[int]) -> bool:
+    """Detect duplicates with a set."""
     seen = set()
     for i in nums:
         if nums in seen:
@@ -11,6 +12,7 @@ def has_duplicate_set(nums: list[int]) -> bool:
     return False
 
 def has_duplicate_dict(nums: list[int]) -> bool:
+    """Detect duplicates using a frequency dict."""
     nums_freq = {}
     for i in nums:
         if i in nums_freq:
@@ -23,6 +25,7 @@ def has_duplicate_dict(nums: list[int]) -> bool:
     return False
 
 def max_subarray_sum(a: list[int]):
+    """Max Subarray Sum."""
     size = len(a)
     max_so_far = -maxsize - 1
     max_ending_here = 0
@@ -36,6 +39,7 @@ def max_subarray_sum(a: list[int]):
 
 
 def is_palindrome(mystr):
+    """Return True if string is a palindrome."""
     start = 0
     end = len(mystr) - 1
     while start < end:
@@ -47,6 +51,7 @@ def is_palindrome(mystr):
     return True
 
 def two_sum(nums: list[int], target: int):
+    """"Do optimal two-sum problem."""
     num_to_index = {}
     for i, num in enumerate(nums):
         complement = target - num
@@ -70,6 +75,7 @@ def remove_duplicates_set(nums):
 
 
 def group_anagrams(strs: list[str]) -> list[str]:
+    """Group anagrams together."""
     anagrams = {}
     for s in strs:
         ss = str(sorted(s))
@@ -83,6 +89,7 @@ def group_anagrams(strs: list[str]) -> list[str]:
     return anagrams_list
 
 def top_k_frequent(nums: list[int], k: int) -> list[int]:
+    """Top K frequent with a sort."""
     count = {}
     for num in nums:
         count[num] = 1 + count.get(num, 0)
@@ -98,6 +105,7 @@ def top_k_frequent(nums: list[int], k: int) -> list[int]:
 
 
 def top_k_frequent_heap(nums: list[int], k: int) -> list[int]:
+    """Top K frequent with a heap."""
     count = {}
     for num in nums:
         count[num] = 1 + count.get(num, 0)
@@ -115,6 +123,7 @@ def top_k_frequent_heap(nums: list[int], k: int) -> list[int]:
 def top_k_frequent_bucket_sort(
     nums: list[int], k: int
 ) -> list[int]:
+    """Top K frequent with a bucket sort."""
     count = {}
     freq = [[] for i in range(len(nums) + 1)]
 
