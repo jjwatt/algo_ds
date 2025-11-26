@@ -79,7 +79,7 @@ def group_anagrams(strs: list[str]) -> list[str]:
         else:
             anagrams[ss] = [s]
     anagrams_list = []
-    for k, v in anagrams.items():
+    for v in anagrams.values():
         anagrams_list.append(v)
     return anagrams_list
 
