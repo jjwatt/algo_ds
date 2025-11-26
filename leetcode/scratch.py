@@ -182,7 +182,7 @@ def move_zeroes(nums: list[int]) -> list[int]:
     # Points to where we will write the next non-zero
     writer = 0
     # Reader acts as our iterator
-    for reader in range(len(nums)):
+    for reader, _ in enumerate(nums):
         if nums[reader] != 0:
             # We found a valid item.
             # Write it to the writer slot.
