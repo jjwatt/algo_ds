@@ -162,6 +162,24 @@ def is_anagram(s: str, t: str) -> bool:
     return s_dict == t_dict
 
 
+def move_zeroes(nums: list[int]) -> list[int]:
+    """Move all zeroes to the end of an array.
+
+      Maintains relative order of the array.
+      """
+    # Points to where we will write the next non-zero
+    writer = 0
+    # Reader acts as our iterator
+    for reader in range(len(nums)):
+        if nums[reader] != 0:
+            # We found a valid item.
+            # Write it to the writer slot.
+            # Swap writer with reader.
+            nums[writer], nums[reader] = nums[reader], nums[writer]
+            writer += 1
+    return nums
+
+
 if __name__ == "__main__":
     lst = [1, 2, 3, 4]
     print(f"Max sum: {max_subarray_sum(lst)}")
