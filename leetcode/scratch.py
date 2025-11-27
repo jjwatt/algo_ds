@@ -191,6 +191,23 @@ def move_zeroes(nums: list[int]) -> list[int]:
             writer += 1
     return nums
 
+def max_subarray_of_size_k(k, nums):
+    max_sum = 0
+    window_sum = 0
+    window_start = 0
+    for window_end in range(len(nums)):
+        # 1. Add: Include the next element in the window_end
+        window_sum += nums[window_end]
+        # 2. Check: Have we hit the window size, "k?"
+        if window_end >= k - 1:
+            # 3. Capture: result if it's bigger than we've seen
+            max_sum = max(max_sum, window_sum)
+            # 4. Subtract: Remove the element that is sliding out.
+            window_sum -= nums[window_start]
+            # 5. Slide: Move the tail forward.
+            window_start += 1
+    return max_sum
+
 
 if __name__ == "__main__":
     lst = [1, 2, 3, 4]
