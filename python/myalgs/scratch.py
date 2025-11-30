@@ -1,5 +1,5 @@
 import heapq
-from abc.collections import Iterable, MutableSequence
+from collections.abc import Iterable, MutableSequence
 from collections import Counter
 
 #TODO: Use Python Typing/type hints

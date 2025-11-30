@@ -191,6 +191,7 @@ def move_zeroes(nums: list[int]) -> list[int]:
             writer += 1
     return nums
 
+
 def max_subarray_of_size_k(k, nums):
     max_sum = 0
     window_sum = 0
