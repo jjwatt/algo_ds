@@ -7,7 +7,9 @@ class SupportsLessThan(Protocol):
     def __lt__(self, other: "SupportsLessThan", /) -> bool: ...
 
 
-def pythonic_binsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | None:
+def pythonic_binsearch[T: SupportsLessThan](
+    haystack: Sequence[T], needle: T
+) -> int | None:
     index = bisect.bisect_left(haystack, needle)
     if index != len(haystack) and haystack[index] == needle:
         return index
@@ -32,6 +34,7 @@ def binsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | No
 
 def recbinsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | None:
     """Recursive binary search."""
+
     def rec(low: int, high: int) -> T | None:
         if low > high:
             # Didn't find needle
@@ -45,16 +48,19 @@ def recbinsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int |
         else:
             # Search the left side
             return rec(low, mid - 1)
+
     return rec(0, len(haystack) - 1)
 
 
 if __name__ == "__main__":
-    tests = ((range(1, 11), 5),
-             (range(1, 10), 8),
-             (range(1, 10), 2),
-             (range(10, 21), 16),
-             (range(-5, 5), 4),
-             (range(-10, 0), 5))
+    tests = (
+        (range(1, 11), 5),
+        (range(1, 10), 8),
+        (range(1, 10), 2),
+        (range(10, 21), 16),
+        (range(-5, 5), 4),
+        (range(-10, 0), 5),
+    )
     # breakpoint()
     for t in tests:
         # res = binsearch(*t)
