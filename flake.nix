@@ -48,6 +48,8 @@
         python = pkgs.mkShell {
           packages = with pkgs; [
             uv
+            ty
+            ruff
             python315
             pkg-config
             stdenv.cc
