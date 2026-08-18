@@ -83,6 +83,7 @@
             ocamlPackages.ocamlformat
             ocamlPackages.utop
             ocamlPackages.ocaml-lsp
+            ocamlPackages.ocp-indent
           ];
         };
 
