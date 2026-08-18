@@ -50,6 +50,8 @@
             uv
             ty
             ruff
+            mypy
+            pylint
             python315
             pkg-config
             stdenv.cc

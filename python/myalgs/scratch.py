@@ -2,16 +2,19 @@ import heapq
 from collections.abc import Iterable, MutableSequence
 from collections import Counter
 
-#TODO: Use Python Typing/type hints
-#TODO: Organize better with stuff in algo_ds/python/myalgs/sorting.py
+# TODO: Use Python Typing/type hints
+# TODO: Organize better with stuff in algo_ds/python/myalgs/sorting.py
+
 
 def insertion_sort1(collection):
     """Insertion Sort from TheAlgorithms."""
     for loop_index in range(1, len(collection)):
         insertion_index = loop_index
         breakpoint()
-        while (insertion_index > 0
-               and collection[insertion_index - 1] > collection[insertion_index]):
+        while (
+            insertion_index > 0
+            and collection[insertion_index - 1] > collection[insertion_index]
+        ):
             collection[insertion_index], collection[insertion_index - 1] = (
                 collection[insertion_index - 1],
                 collection[insertion_index],
@@ -22,22 +25,24 @@ def insertion_sort1(collection):
     breakpoint()
     return collection
 
+
 def insort(collection):
     for i in range(1, len(collection)):
         j = i
-        while (j > 0 and collection[j - 1] > collection[j]):
-            exchange(collection, j, (j-1))
+        while j > 0 and collection[j - 1] > collection[j]:
+            exchange(collection, j, (j - 1))
             j = dec(j)
         breakpoint()
     breakpoint()
     return collection
+
 
 def insort_c(collection):
     for i, _ in enumerate(collection):
         j = i - 1
         key = collection[i]
         breakpoint()
-        while (j >= 0 and key < collection[j]):
+        while j >= 0 and key < collection[j]:
             collection[j + 1] = collection[j]
             j = j - 1
             breakpoint()
@@ -81,6 +86,7 @@ def reverse_in_place(col):
         start += 1
         end -= 1
 
+
 def pythonic_reverse_in_place(col: MutableSequence):
     for i in range(len(col) // 2):
         col[i], col[~i] = col[~i], col[i]
@@ -97,7 +103,7 @@ def dedupe(items, key=None):
 
 def top_k_frequent(items: Iterable, k: int) -> Iterable:
     count = {}
-    for num in nums:
+    for num in items:
         count[num] = 1 + count.get(num, 0)
     heap = []
     for num in count.keys():
@@ -105,6 +111,7 @@ def top_k_frequent(items: Iterable, k: int) -> Iterable:
     klargest = heapq.nlargest(k, heap)
     res = [n for (_, n) in klargest]
     return res
+
 
 def top_k_frequent_counter(items: Iterable, k: int) -> tuple:
     counts = Counter(items)
