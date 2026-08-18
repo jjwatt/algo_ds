@@ -2,8 +2,8 @@ from collections.abc import MutableSequence, Sequence
 from typing import Protocol, Self
 
 
-class SupportsLessThan(Protocol):
-    def __lt__(self, other: Self, /) -> bool: ...
+class SupportsLessThanOrEqual(Protocol):
+    def __le__(self, other: Self, /) -> bool: ...
 
 
 def insertion_sort1(collection: MutableSequence) -> MutableSequence:
@@ -39,6 +39,7 @@ def insort(collection: MutableSequence) -> MutableSequence:
     return collection
 
 def insort_c(collection: MutableSequence) -> MutableSequence:
+    """Insertion sort ported from C."""
     for i, _ in enumerate(collection):
         j = i - 1
         key = collection[i]
@@ -49,7 +50,7 @@ def insort_c(collection: MutableSequence) -> MutableSequence:
     return collection
 
 def insort_w(A: MutableSequence) -> MutableSequence:
-    """Insortion sort from wikipedia and similar to the one from C.
+    """Insertion sort from wikipedia and similar to the one from C.
     Wikipedia says that this is derived from expanding "swap" from the
     simpler definition.
     """
@@ -63,3 +64,25 @@ def insort_w(A: MutableSequence) -> MutableSequence:
         A[j + 1] = x
         i = i + 1
     return A
+
+
+def finsert[T: SupportsLessThanOrEqual](lst: tuple[T, ...], x: T) -> tuple[T, ...]:
+    """Inserts 'x' into sorted tuple 'lst' preserving sorted order."""
+    match lst:
+        case ():
+            return (x,)
+        case (y, *ys) if x <= y:
+            return (x, y, *ys)
+        case (y, *ys):
+            return (y, *finsert(tuple(ys), x))
+
+
+def finsertion_sort[T: SupportsLessThanOrEqual](seq: Sequence[T]) -> tuple[T, ...]:
+    """Sorts a sequence using functional insertion sort."""
+    match tuple(seq):
+        case ():
+            return ()
+        case (x, *xs):
+            return finsert(finsertion_sort(tuple(xs)), x)
+
+
