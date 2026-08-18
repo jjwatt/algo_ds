@@ -12,3 +12,10 @@ unsound-return-statement = "error"
 extend-select = ["ANN", "PYI"]
 preview = true
 
+[tool.mypy]
+strict_optional = true
+disallow_untyped_defs = true
+ccheck_untyped_defs = true
+no_implicit_optional = true
+strict_equality = true
+

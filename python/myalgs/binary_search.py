@@ -1,4 +1,12 @@
-def binsearch(haystack, needle):
+from collections.abc import Sequence
+from typing import Protocol
+
+
+class SupportsLessThan(Protocol):
+    def __lt__(self, other: "SupportsLessThan", /) -> bool: ...
+
+
+def binsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | None:
     high = len(haystack) - 1
     low = 0
     while low <= high:
@@ -14,9 +22,9 @@ def binsearch(haystack, needle):
     return None
 
 
-def recbinsearch(haystack, needle):
+def recbinsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | None:
     """Recursive binary search."""
-    def rec(low, high):
+    def rec(low: int, high: int) -> T | None:
         if low > high:
             # Didn't find needle
             return None
@@ -26,7 +34,7 @@ def recbinsearch(haystack, needle):
         if haystack[mid] < needle:
             # Search the right side
             return rec(mid + 1, high)
-        if haystack[mid] > needle:
+        else:
             # Search the left side
             return rec(low, mid - 1)
     return rec(0, len(haystack) - 1)
