@@ -1,9 +1,17 @@
+import bisect
 from collections.abc import Sequence
 from typing import Protocol
 
 
 class SupportsLessThan(Protocol):
     def __lt__(self, other: "SupportsLessThan", /) -> bool: ...
+
+
+def pythonic_binsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | None:
+    index = bisect.bisect_left(haystack, needle)
+    if index != len(haystack) and haystack[index] == needle:
+        return index
+    return None
 
 
 def binsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | None:
@@ -51,6 +59,13 @@ if __name__ == "__main__":
     for t in tests:
         # res = binsearch(*t)
         res = recbinsearch(*t)
+        if res:
+            print(f"Found {t[1]} at index {res}")
+        else:
+            print(f"Could not find {t[1]} in {t[0]}")
+
+    for t in tests:
+        res = pythonic_binsearch(*t)
         if res:
             print(f"Found {t[1]} at index {res}")
         else:
