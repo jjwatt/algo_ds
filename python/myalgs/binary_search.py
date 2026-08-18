@@ -1,10 +1,10 @@
 import bisect
 from collections.abc import Sequence
-from typing import Protocol
+from typing import Protocol, Self
 
 
 class SupportsLessThan(Protocol):
-    def __lt__(self, other: "SupportsLessThan", /) -> bool: ...
+    def __lt__(self, other: Self, /) -> bool: ...
 
 
 def pythonic_binsearch[T: SupportsLessThan](
@@ -35,7 +35,7 @@ def binsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | No
 def recbinsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | None:
     """Recursive binary search."""
 
-    def rec(low: int, high: int) -> T | None:
+    def rec(low: int, high: int) -> int | None:
         if low > high:
             # Didn't find needle
             return None
@@ -61,18 +61,16 @@ if __name__ == "__main__":
         (range(-5, 5), 4),
         (range(-10, 0), 5),
     )
-    # breakpoint()
-    for t in tests:
-        # res = binsearch(*t)
-        res = recbinsearch(*t)
-        if res:
-            print(f"Found {t[1]} at index {res}")
+    for haystack, needle in tests:
+        res = recbinsearch(haystack, needle)
+        if res is not None:
+            print(f"Found {needle} at index {res}")
         else:
-            print(f"Could not find {t[1]} in {t[0]}")
+            print(f"Could not find {needle} in {haystack}")
 
-    for t in tests:
-        res = pythonic_binsearch(*t)
-        if res:
-            print(f"Found {t[1]} at index {res}")
+    for haystack, needle in tests:
+        res = pythonic_binsearch(haystack, needle)
+        if res is not None:
+            print(f"Found {needle} at index {res}")
         else:
-            print(f"Could not find {t[1]} in {t[0]}")
+            print(f"Could not find {needle} in {haystack}")

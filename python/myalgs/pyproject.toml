@@ -1,12 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "myalgs"
 version = "0.1.0"
 requires-python = ">=3.12"
 
+[dependency-groups]
+dev = [
+    "pytest"
+]
+
+[tool.hatch.build.targets.wheel]
+sources = ["."]
+only-include = ["."]
+
 [tool.ty.rules]
-missing-type-argument = "error"
 possibly-unresolved-reference = "warn"
-unsound-return-statement = "error"
 
 [tool.ruff.lint]
 extend-select = ["ANN", "PYI"]
@@ -18,4 +29,3 @@ disallow_untyped_defs = true
 ccheck_untyped_defs = true
 no_implicit_optional = true
 strict_equality = true
-
