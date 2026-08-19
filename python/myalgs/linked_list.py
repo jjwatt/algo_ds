@@ -1,40 +1,48 @@
-"""Linked list implementation."""
+"""Strictly-typed linked list implementation."""
+from collections.abc import Iterator
+from typing import Self
 
-class Node:
-    def __init__(self, data):
+
+class Node[T]:
+    data: T
+    next: Self | None
+
+    def __init__(self, data: T, next_node: Self | None = None) -> None:
         self.data = data
-        self.next = None
+        self.next = next_node
 
 
-class LinkedList:
-    def __init__(self):
+class LinkedList[T]:
+    head: Node[T] | None
+
+    def __init__(self) -> None:
         self.head = None
 
-    def append(self, data):
+    def append(self, data: T) -> None:
+        """Appends an element to the end of the list."""
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
             return
         last_node = self.head
-        while last_node.next:
+        while last_node.next is not None:
             last_node = last_node.next
         last_node.next = new_node
 
-    def push_front(self, data):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-            return
-        new_node.next = self.head
-        self.head = new_node
+    def push_front(self, data: T) -> None:
+        """Prepends an element to the beginning of the list."""
+        self.head = Node(data, next_node=self.head)
 
-    def display(self):
+
+    def __iter__(self) -> Iterator[T]:
+        """Allows iteration over elements (yields T), satisfying Iterable[T]."""
         current = self.head
-        elements = []
-        while current:
-            elements.append(current.data)
+        while current is not None:
+            yield current.data
             current = current.next
-        print(" -> ".join(map(str, elements)))
+
+    def display(self) -> None:
+        print(" -> ".join(str(item) for item in self))
 
 
 if __name__ == "__main__":
