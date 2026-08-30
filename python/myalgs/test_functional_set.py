@@ -1,6 +1,10 @@
+from dataclasses import dataclass
+from typing import Self
+
 import pytest
 
-from functional_set import Empty, Set, Tree, empty_set, insert, member, to_sorted_list
+from functional_set import (Empty, Set, Tree, empty_set, insert, member,
+                            member_fast, to_sorted_list)
 
 
 def test_empty_set_properties() -> None:
@@ -71,3 +75,47 @@ def test_string_ordering() -> None:
     assert member("apple", words) is True
     assert member("fig", words) is False
 
+
+@dataclass(slots=True)
+class CountedInt:
+    value: int
+    comparisons: int = 0
+
+    def __lt__(self, other: Self, /) -> bool:
+        self.comparisons += 1
+        other.comparisons += 1
+        return self.value < other.value
+
+    
+def test_member_fast_correctness() -> None:
+    s: Set[int] = empty_set()
+    elements = [50, 20, 70, 10, 30, 60, 80]
+    for x in elements:
+        s = insert(x, s)
+
+    for x in elements:
+        assert member_fast(x, s) is True
+
+    assert member_fast(5, s) is False
+
+
+def test_member_fast_comparison_bound() -> None:
+    # Build a balanced BST of depth 3.
+    #              40
+    #           /      \
+    #         20        60
+    #        /  \      /  \
+    #       10  30    50   70
+    nums = [40, 20, 60, 10, 30, 50, 70]
+    s: Set[CountedInt] = empty_set()
+    for num in nums:
+        s = insert(CountedInt(num), s)
+
+    # Reset counter on target key.
+    # Leaf node at depth 2.
+    target = CountedInt(10)
+    assert member_fast(target, s) is True
+
+    # Depth is 2, number of nodes visited is 3, plus 1 at Empty.
+    # Total comparisons for target must be <= d + 1 + 1 (4 comparisons).
+    assert target.comparisons <= 4

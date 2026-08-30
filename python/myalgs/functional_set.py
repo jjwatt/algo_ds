@@ -102,6 +102,11 @@ def insert[T: Ordered](x: T, s: Set[T]) -> Set[T]:
 def member[T: Ordered](x: T, s: Set[T]) -> bool:
     return s.member(x)
 
+
+def member_fast[T: Ordered](x: T, s: Set[T]) -> bool:
+    return s.member_fast(x)
+
+
 def to_sorted_list[T: Ordered](s: Set[T]) -> list[T]:
     """In-order traversal yielding sorted list."""
     if isinstance(s, Tree):
