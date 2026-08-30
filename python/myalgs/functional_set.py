@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Protocol, runtime_checkable
+from typing import Protocol, Self, runtime_checkable
 
 
 @runtime_checkable
 class Ordered(Protocol):
-    def __lt__(self, other: object) -> bool: ...
+    def __lt__(self, other: Self, /) -> bool: ...
 
 
 @runtime_checkable
