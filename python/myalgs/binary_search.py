@@ -7,15 +7,6 @@ class SupportsLessThan(Protocol):
     def __lt__(self, other: Self, /) -> bool: ...
 
 
-def pythonic_binsearch[T: SupportsLessThan](
-    haystack: Sequence[T], needle: T
-) -> int | None:
-    index = bisect.bisect_left(haystack, needle)
-    if index != len(haystack) and haystack[index] == needle:
-        return index
-    return None
-
-
 def binsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | None:
     high = len(haystack) - 1
     low = 0
@@ -29,6 +20,15 @@ def binsearch[T: SupportsLessThan](haystack: Sequence[T], needle: T) -> int | No
         elif haystack[mid] > needle:
             # Search the left side
             high = mid - 1
+    return None
+
+
+def pythonic_binsearch[T: SupportsLessThan](
+    haystack: Sequence[T], needle: T
+) -> int | None:
+    index = bisect.bisect_left(haystack, needle)
+    if index != len(haystack) and haystack[index] == needle:
+        return index
     return None
 
 

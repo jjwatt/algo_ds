@@ -1,4 +1,5 @@
 """Various sorting in Python."""
+
 import random
 
 
@@ -75,9 +76,9 @@ def insertion_sort(L):
         j = i - 1
         key = L[i]
         while L[j] > key and j >= 0:
-            L[j+1] = L[j]
+            L[j + 1] = L[j]
             j = j - 1
-        L[j+1] = key
+        L[j + 1] = key
 
 
 def py_insertion_sort(items):
@@ -153,6 +154,22 @@ def swap_list_elements(lst, index1, index2):
     lst[index1], lst[index2] = lst[index2], lst[index1]
 
 
+def bubble_sort(arr):
+    """Straight bubble sort. Textbook bubble sort."""
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        # Last i elements are already in place, so skip them.
+        for j in range(0, n - i - 1):
+            if arr[j + 1] < arr[j]:
+                # Swap the adjacent elements
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        # If no elements were swapped, the list is already sorted.
+        if not swapped:
+            break
+
+
 class bubblesort(object):
     """Bubblesort functions."""
 
@@ -163,11 +180,11 @@ class bubblesort(object):
                 if arr[i] > arr[i + 1]:
                     # Swap.
                     # arr[i], arr[i + 1] = arr[i + 1], arr[i]
-                    swap_list_elements(arr, i, i+1)
+                    swap_list_elements(arr, i, i + 1)
 
     def mypr_in_place(self, arr):
         """Partial recursive in-place bubblesort."""
-        self.mypr_in_place_aux(arr, len(arr))
+        self._mypr_in_place_aux(arr, len(arr))
 
     def _mypr_in_place_aux(self, arr, acc):
         if acc == 1:
@@ -176,7 +193,7 @@ class bubblesort(object):
         i = 0
         while i < acc - 1:
             if arr[i] > arr[i + 1]:
-                swap_list_elements(arr, i, i+1)
+                swap_list_elements(arr, i, i + 1)
             i += 1
         self._mypr_in_place_aux(arr, acc - 1)
 
@@ -188,9 +205,9 @@ class bubblesort(object):
         to 'hide' the aux functions. Still no loops!
         Isn't this clearer? Waaay slower, though.
         12 - 20 times slower than the imperative and
-        in-place ones. Bubblesort is the slowest and
-        dumbest sort anyway, though.
+        in-place ones.
         """
+
         def _bsort(ar2):
             """All the 'hard work' in this fn."""
             if ar2[1:] == []:
@@ -206,6 +223,7 @@ class bubblesort(object):
                 return _bsort(ar1)
             else:
                 return _dec(counter - 1, _bsort(ar1))
+
         return _dec(len(arr), arr)
 
     def bubble_up(self, arr):
@@ -239,10 +257,7 @@ def my_fr_qsort(arr):
         return arr
     pivot = arr[0]
     return (
-        my_fr_qsort(
-            [front for front in arr[1:] if front < pivot]
-        ) + [pivot] +
-        my_fr_qsort(
-            [back for back in arr[1:] if back >= pivot]
-        )
+        my_fr_qsort([front for front in arr[1:] if front < pivot])
+        + [pivot]
+        + my_fr_qsort([back for back in arr[1:] if back >= pivot])
     )
