@@ -1,6 +1,8 @@
 """Scratch."""
+
 import heapq
 from sys import maxsize
+
 
 def has_duplicate_set(nums: list[int]) -> bool:
     """Detect duplicates with a set."""
@@ -11,6 +13,7 @@ def has_duplicate_set(nums: list[int]) -> bool:
         seen.add(i)
     return False
 
+
 def has_duplicate_dict(nums: list[int]) -> bool:
     """Detect duplicates using a frequency dict."""
     nums_freq = {}
@@ -20,6 +23,7 @@ def has_duplicate_dict(nums: list[int]) -> bool:
         if i > 1:
             return True
     return False
+
 
 def max_subarray_sum(a: list[int]):
     """Max Subarray Sum."""
@@ -45,8 +49,9 @@ def is_palindrome(mystr):
             return False
     return True
 
+
 def two_sum(nums: list[int], target: int):
-    """"Do optimal two-sum problem."""
+    """ "Do optimal two-sum problem."""
     num_to_index = {}
     for i, num in enumerate(nums):
         complement = target - num
@@ -54,6 +59,16 @@ def two_sum(nums: list[int], target: int):
             return [num_to_index[complement], i]
         num_to_index[num] = i
     return []
+
+
+def two_sum_naive(nums: list[int], target: int):
+    n = len(nums)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nums[i] + nums[j] == target:
+                return [i, j]
+    return []
+
 
 def remove_duplicates_set(nums):
     """Remove duplicates from an unsorted array in-place"""
@@ -116,9 +131,7 @@ def top_k_frequent_heap(nums: list[int], k: int) -> list[int]:
     return res
 
 
-def top_k_frequent_bucket_sort(
-    nums: list[int], k: int
-) -> list[int]:
+def top_k_frequent_bucket_sort(nums: list[int], k: int) -> list[int]:
     """Top K frequent with a bucket sort."""
     count = {}
     freq = [[] for i in range(len(nums) + 1)]
@@ -177,8 +190,8 @@ def is_anagram(s: str, t: str) -> bool:
 def move_zeroes(nums: list[int]) -> list[int]:
     """Move all zeroes to the end of an array.
 
-      Maintains relative order of the array.
-      """
+    Maintains relative order of the array.
+    """
     # Points to where we will write the next non-zero
     writer = 0
     # Reader acts as our iterator

@@ -18,6 +18,7 @@ def daily_temperatures(temperatures: list[int]) -> list[int]:
         # Resolve all colder days currently waiting on the stack.
         while stack and temperatures[stack[-1]] < temp:
             prev_day = stack.pop()
+            # Number of days to wait for it to be warmer.
             ans[prev_day] = i - prev_day
         stack.append(i)
     return ans

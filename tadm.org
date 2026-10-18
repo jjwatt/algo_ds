@@ -1,0 +1,255 @@
+* Chapter 2
+
+** Exercises
+\begin{equation}
+\text{if }f_1(n) = O(g_1(n)) \text{ and } f_2(n) = O(g_2(n))\text{ then } f_1(n) + f_2(n) = O(g_1(n) + g_2(n))
+\end{equation}
+
+
+*** 2-21
+Prove that for all  \( k \geq 0 \) and all sets of real constants \( \{a_k, a_{k-1},\dots, a_1, a_0 \}\),
+
+\begin{equation}
+a_kn^k + a_{k-1}n^{k-1} + \dots + a_1n + a_0 = O(n^k)
+\end{equation}
+
+*** 2-22
+Show that for any real constants $a$ and $b$, \(b > 0\)
+\begin{equation}
+(n+a)^b = \Theta(n^b)
+\end{equation}
+
+*** 2-28
+True or False
+c)
+\begin{equation}
+n^2(1 + sqrt{n}) = O(n^2logn)
+\end{equation}
+
+*** 2-29
+Is \(f(n) = O(g(n), \Omega(g(n)), \Theta(g(n))))\) or None of the above?
+a)
+\begin{equation}
+f(n) = n^2 + 3n + 4, g(n) = 6n + 7
+\end{equation}
+b)
+\begin{equation}
+f(n) = n\sqrt{n}, g(n) = n^2 - n
+\end{equation}
+c)
+\begin{equation}
+f(n) = 2^n - n^2, g(n) = n^4 + n^2
+\end{equation}
+
+*** 2-30
+a)
+If an algorithm takes O(n^2) worst-case time, is it possible that it takes O(n) on some inputs?
+b)
+If an algorithm takes O(n^2) worst-case time, is it possible that it takes O(n) on all inputs?
+c)
+If an algorithm takes \Theta(n^2) worst-case time, is it possible that it takes O(n) on some inputs?
+d)
+If an algorithm takes \Theta(n^2) worst-case time, is it possible that it takes O(n) on all inputs?
+e)
+Is the function \(f(n) = \Theta(n^2)\) where \(f(n) = 100n^2 \) for even $n$ and \(f(n) = 20n^2 - nlog_2n\) for odd $n$?
+
+*** 2-31
+a)
+Is \(3^n = O(2^n)\)
+b)
+Is \(log3^n = O(log2^n)\)
+c)
+Is \(3^n = \Omega(2^n)\)
+d)
+Is \(log3^n = \Omega(log2^n)\)
+
+*** 2-32
+Find a simple $g(n)$ : $f(n) = \Theta(g(n))$
+a)
+\begin{equation}
+f(n) = \[ \sum_{i=1}^{n} 1/i \]
+\end{equation}
+c)
+\begin{equation}
+f(n) = \[ \sum_{i=1}^{n} logi \]
+\end{equation}
+
+*** 2-34
+Which are true?
+a)
+\begin{equation}
+\[ \sum_{i=1}^{n} 3^i = \Theta(3^{n-1}) \]
+\end{equation}
+b)
+\begin{equation}
+\[ \sum_{i=1}^{n} 3^i = \Theta(3^{n}) \]
+\end{equation}
+c)
+\begin{equation}
+\[ \sum_{i=1}^{n} 3^i = \Theta(3^{n+1}) \]
+\end{equation}
+
+*** 2-35
+Find a simple $g(n)$ : $f(n) = \Theta(g(n))$
+a)
+\begin{equation}
+f_1(n) = (1000)2^n + 4^n
+\end{equation}
+
+b)
+\begin{equation}
+f_2(n) = n + nlogn + \sqrt{n}
+\end{equation}
+
+c)
+\begin{equation}
+f_3(n) = log(n^20) + (log n)^10
+\end{equation}
+
+d)
+\begin{equation}
+f_4(n) = (0.99)^n + n^1000
+\end{equation}
+
+*** 2-36
+A is \(O, o, \Omega, \omega \text{ or } \Theta \text{ of } B\)
+a) \(A = n^100, B = 2^n\)
+b) \(A = (lgn)^12, B = \sqrt{n}\)
+c) \(A = \sqrt{n}, B = n^{cos(\pi n/8)}\)
+d) \(A = n^{lgn}, B = (lgn)^n\)
+f) \(A = lg(n!), B = nlgn \)
+
+*** 2-40
+\begin{equation}
+\[ \sum_{i=1}^{n} \sum_{j=i}^{2*i} 1 \]
+\end{equation}
+
+*** 2-41
+#+begin_quote
+for i = 1 to n/2 do
+  for j = i to n - i do
+    for k = 1 to j do
+      output "foobar"
+#+end_quote
+
+\begin{equation}
+\sum_{i=1}^{n/2} \sum_{j=i}^{n-i} \sum{k=1}^{j} 1
+\end{equation}
+
+*** 2-42
+When you first learned to multiply numbers, you were told that x x y
+means adding x a total of y times, so 5 x 4 = 5 + 5 + 5 + 5 = 20. What
+is the time complexity of multiplying two n-digit numbers in base 'b'
+using the repeated addition method, as a function of 'n' and 'b'.
+Assume that single-digit by single-digit addition or multiplication
+takes O(1) time. Hint: how big can 'y' be as a function of 'n' and
+'b'?
+
+*** 2-43
+In grade school, you learned to multiply long numbers on a
+digit-by-digit basis so that 127x211 = 127 x 1 + 127 x 10 + 127 x 200
+= 26,797. Analyze the time complexity of multiplying two n-digit
+numbers with this method as a function of n (assume constant base
+size). Asssume that single-digit by single-digit addition or
+multiplication takes O(1) time.
+
+*** 2-44
+Prove the following identities.
+a) \(log_a(xy) = log_a x + log_a y \)
+b) \(log_a x^{y} = ylog_a x\)
+c) \(log_a x = \frac{log_bx}{log_ba}\)
+d) \(x^{log_by} = y^{log_bx}\)
+
+*** 2-45
+Show that \(\lceil lg(n+1) \rceil = \lfloor lg(n) \rfloor + 1\)
+
+*** 2-46
+Prove that the binary representation of \(n \geq 1\) has \(\lfloor lgn \rfloor + 1\) bits.
+
+*** 2-47
+In one of my research papers I gave a comparison-based sorting
+algorithm that runs in \(O(nlog\sqrt{n})\). Given the existence of an
+\(\Omega(nlogn)\) lower bound for sorting, how can this be possible?
+
+*** 2-48
+You are a given a set $S$ of $n$ numbers. You must pick a subset
+\(S'\) of \(k\) numbers from \(S\) such that the probability of each
+element of \(S\) occurring in \(S'\) is equal (i.e., each is selected
+with probability \(k/n\)). You may make only one pass over the
+numbers. What if \(n\) is unknown?
+
+*** 2-49
+We have 1,000 data items to store on 1,000 nodes. Each node can store
+copies of exactly three different items. Propose a replication scheme
+to minimize data loss as nodes fail. What is the expected number of
+data entries that get lost when three random nodes fail?
+
+*** 2-50
+Consider the following algorithm to find the minimum element in an
+array of numbers \(A[0,\ldots,n]\). One extra variable /tmp/ is
+allocated to hold the current minimum value. Start from \(A[0]\);
+/tmp/ is compared against \(A[1], A[2],\ldots,A[N]\) in order. When
+\(A[i] \lt \text{tmp}, \text{tmp} = A[i]\). What is the expected
+number of times that the assignment operation /tmp/ = \(A[i]\) is
+performed?
+
+*** 2-51
+You are given 10 bags of gold coins. Nine bags contain coins that each
+weigh 10 grams. One bag contains all false coins that weigh 1 gram
+less. You must identify this bag in just one weighing. You have a
+digital balance that reports the weight of what is placed on it.
+
+*** 2-52
+You have eight balls all of the same size. Seven of them weigh the
+same, and one of them weighs slightly more. How can you find the ball
+that is heavier by using a balance and only two weighings?
+
+*** 2-53
+Suppose we start with $n$ companies that eventually merge into one big
+company. How many different ways are there for them to merge?
+
+*** 2-54
+Six pirates must divide $300 among themselves. The division is to
+proceed as follows. The senior pirate proposes a way to divide the
+money. Then the pirates vote. If the senior pirate gets at least half
+the votes he wins, and that division remains. If he doesn't, he is
+killed and then the next senior-most pirate gets a chance to propose
+the division. Now tell what will happen and why (i.e. how many pirates
+survive and how the division is done)? All the pirates are intelligent
+and the first priority is to stay alive and the next priority is to
+get as much money as possible.
+
+*** 2-55
+Reconsider the pirate problem above, where we start with only one
+indivisible dollar. Who gets the dollar and how many are killed?
+
+* Precalculus
+** Chapter 9
+*** 27
+\begin{equation}
+x, -\frac{x^3}{3}, \frac{x^5}{5}, -\frac{x^7}{7}, \ldots
+\end{equation}
+
+*** 28
+\begin{equation}
+0.9, 0.99, 0.999, 0.9999, \ldots
+\end{equation}
+
+
+*** 29
+\begin{equation}
+27, 64, 125, 216, \ldots
+\end{equation}
+
+*** 30
+\begin{equation}
+1, 0, 1, 0, \ldots
+\end{equation}
+
+** 9.2.1
+
+*** 6
+\begin{equation}
+\sum_{n=1}^{100} (-1)^{n}
+\end{equation}
+
