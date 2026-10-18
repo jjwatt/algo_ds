@@ -28,3 +28,6 @@
 [submodule "javascript/AlgoCasts"]
 	path = javascript/AlgoCasts
 	url = https://github.com/jjwatt/AlgoCasts.git
+[submodule "Algorithm-Design-Manual-Programs-V3"]
+	path = Algorithm-Design-Manual-Programs-V3
+	url = https://github.com/SkienaBook/Algorithm-Design-Manual-Programs-V3.git
