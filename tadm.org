@@ -1,6 +1,7 @@
 * Chapter 2
 
 ** Exercises
+
 \begin{equation}
 \text{if }f_1(n) = O(g_1(n)) \text{ and } f_2(n) = O(g_2(n))\text{ then } f_1(n) + f_2(n) = O(g_1(n) + g_2(n))
 \end{equation}
@@ -222,6 +223,27 @@ get as much money as possible.
 *** 2-55
 Reconsider the pirate problem above, where we start with only one
 indivisible dollar. Who gets the dollar and how many are killed?
+
+* Chapter 3 Exercises
+
+** Stacks, Queues and Lists
+
+*** 3-1
+A common problem for compilers and text editors is determining whether
+a parantheses in a string are balanced and properly nested. For
+example, the string =((())())()= contains properly nested pairs of
+praentheses, while the strings =)()(= and =())= do not. Give an
+algorithm that returns true if a string contains properly nested and
+balanced parentheses, and false if otherwise. For full credit,
+identify the position of the first offending parenthesis if the string
+is not properly nested and balanced.
+
+*** 3-2
+Give an algorithm that takes a string $S$ consisting of opening and
+closing parentheses, say `)()(())()()))())))(`, and finds the length
+of the longest balanced parenthesis in $S$, which is 12 in the example
+above. (Hint: The solution is not necessarily a contiguous run of
+parenthesis from $S$).
 
 * Precalculus
 ** Chapter 9
