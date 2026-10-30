@@ -11,7 +11,6 @@
       systems = [
         "x86_64-linux"
         "aarch64-linux"
-        "x86_64-darwin"
         "aarch64-darwin"
       ];
 
@@ -20,29 +19,49 @@
     {
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
-          packages = with pkgs; [ git ];
+          packages = with pkgs; [
+            git
+          ];
         };
 
         c = pkgs.mkShell {
-          packages = with pkgs; [
-            gcc
-            gnumake
-            gdb
-            valgrind
-            clang-tools
-          ];
+          packages =
+            with pkgs;
+            [
+              clang-tools
+              gnumake
+              pkg-config
+            ]
+            ++ lib.optionals stdenv.hostPlatform.isLinux [
+              gcc
+              gdb
+              valgrind
+            ]
+            ++ lib.optionals stdenv.hostPlatform.isDarwin [
+              lldb
+            ];
         };
 
         cc = pkgs.mkShell {
-          packages = with pkgs; [
-            gcc
-            gnumake
-            cmake
-            gdb
-            valgrind
-            clang-tools
-            # TODO: Add bazel
-          ];
+          packages =
+            with pkgs;
+            [
+              abseil-cpp
+              clang-tools
+              cmake
+              gnumake
+              gtest
+              ninja
+              pkg-config
+            ]
+            ++ lib.optionals stdenv.hostPlatform.isLinux [
+              gcc
+              gdb
+              valgrind
+            ]
+            ++ lib.optionals stdenv.hostPlatform.isDarwin [
+              lldb
+            ];
         };
 
         python = pkgs.mkShell {
@@ -56,15 +75,19 @@
             pkg-config
             stdenv.cc
           ];
-          env = {
-            LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (
-              with pkgs;
-              [
-                stdenv.cc.cc.lib
-                zlib
-              ]
-            );
-          };
+          env =
+            {
+              UV_PYTHON_PREFERENCE = "only-system";
+            }
+            // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+              LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (
+                with pkgs;
+                [
+                  stdenv.cc.cc.lib
+                  zlib
+                ]
+              );
+            };
         };
 
         scheme = pkgs.mkShell {
@@ -120,7 +143,6 @@
             shfmt
           ];
         };
-
       });
     };
 }
