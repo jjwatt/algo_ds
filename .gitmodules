@@ -1,33 +1,15 @@
-[submodule "hello-ocaml"]
-	path = hello-ocaml
-	url = https://github.com/esy-ocaml/hello-ocaml.git
 [submodule "python/nryoung-algorithms"]
-	path = python/nryoung-algorithms
+	path = references/nryoung-algorithms
 	url = https://github.com/nryoung/algorithms.git
-[submodule "python/keon-algorithms"]
-	path = python/keon-algorithms
-	url = https://github.com/nryoung/algorithms.git
-[submodule "python/interactive-coding-challenges"]
-	path = python/interactive-coding-challenges
-	url = https://github.com/jjwatt/interactive-coding-challenges.git
-[submodule "coding-interview-university"]
-	path = coding-interview-university
-	url = git@github.com:jjwatt/coding-interview-university.git
 [submodule "TheAlgorithms/C-Plus-Plus"]
-	path = TheAlgorithms/C-Plus-Plus
+	path = references/TheAlgorithms/C-Plus-Plus
 	url = https://github.com/TheAlgorithms/C-Plus-Plus.git
 [submodule "TheAlgorithms/C"]
-	path = TheAlgorithms/C
+	path = references/TheAlgorithms/C
 	url = https://github.com/TheAlgorithms/C
 [submodule "TheAlgorithms/Python"]
-	path = TheAlgorithms/Python
+	path = references/TheAlgorithms/Python
 	url = https://github.com/TheAlgorithms/Python.git
-[submodule "scheme/racket/CodeFromTheReasonedSchemer2ndEd"]
-	path = scheme/racket/CodeFromTheReasonedSchemer2ndEd
-	url = https://github.com/webyrd/CodeFromTheReasonedSchemer2ndEd.git
-[submodule "javascript/AlgoCasts"]
-	path = javascript/AlgoCasts
-	url = https://github.com/jjwatt/AlgoCasts.git
 [submodule "Algorithm-Design-Manual-Programs-V3"]
-	path = Algorithm-Design-Manual-Programs-V3
+	path = references/Algorithm-Design-Manual-Programs-V3
 	url = https://github.com/SkienaBook/Algorithm-Design-Manual-Programs-V3.git

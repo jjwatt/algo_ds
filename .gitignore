@@ -1,2 +1,30 @@
-.envrc
-.direnv
+# direnv & local environment overrides
+.direnv/
+.envrc.local
+
+# Nix build symlinks
+result
+result-*
+
+# C / C++ / CMake build artifacts
+build/
+cmake-build-*/
+compile_commands.json
+*.o
+*.out
+*.a
+*.so
+*.dylib
+*.dSYM/
+
+# Python caches & virtualenvs
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editor / OS files
+.DS_Store
+*~
