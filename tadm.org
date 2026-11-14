@@ -245,6 +245,11 @@ of the longest balanced parenthesis in $S$, which is 12 in the example
 above. (Hint: The solution is not necessarily a contiguous run of
 parenthesis from $S$).
 
+*** 3-3
+Give an algorithm to reverse the direction of a given singly linked
+list. In other words, after the reversal all pointers should now point
+backwards. Your algorithm should take linear time.
+
 * Precalculus
 ** Chapter 9
 *** 27
