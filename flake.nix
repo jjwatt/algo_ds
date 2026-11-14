@@ -129,6 +129,7 @@
 
         javascript = pkgs.mkShell {
           packages = with pkgs; [
+            biome
             nodejs
             corepack
             typescript

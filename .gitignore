@@ -25,6 +25,9 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 
+# JavaScript / TypeScript
+node_modules/
+
 # Editor / OS files
 .DS_Store
 *~
