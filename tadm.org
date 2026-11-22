@@ -250,6 +250,11 @@ Give an algorithm to reverse the direction of a given singly linked
 list. In other words, after the reversal all pointers should now point
 backwards. Your algorithm should take linear time.
 
+*** 3-4
+Design a stack /S/ that supports /S.push(x)/, /S.pop()/ and
+/S.findmin()/, which returns the minimum element of /S/. All
+operations should run in constant time.
+
 * Precalculus
 ** Chapter 9
 *** 27
